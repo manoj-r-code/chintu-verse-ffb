@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getRandomCats, getRandomCatFact } from "../../services/api";
+import { getRandomCats, getRandomCatFact } from "../../services/apiService";
 import CatCard from "./CatCard";
 import "./Home.css";
 
