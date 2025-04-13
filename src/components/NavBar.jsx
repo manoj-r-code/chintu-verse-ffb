@@ -38,7 +38,7 @@ function NavBar() {
       <div className="nav-center">
         <Link to="/">Home</Link>
         <Link to="/gallery">Gallery</Link>
-        <Link to="/fav">Favourites</Link>
+        {/* <Link to="/fav">Favourites</Link> */}
         <Link to="/game">Game</Link>
         <Link to="/chintu">Chintu</Link>
       </div>
