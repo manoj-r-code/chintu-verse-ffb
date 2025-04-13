@@ -274,11 +274,16 @@
 
 import React, { useState, useEffect } from "react";
 import "./Gallery.css";
-import { uploadMedia, fetchMedia } from "../../services/mediaService";
+import {
+  uploadMedia,
+  fetchMedia,
+  deleteMedia,
+} from "../../services/mediaService";
 import Lightbox from "yet-another-react-lightbox";
 import Video from "yet-another-react-lightbox/plugins/video";
-import { FaPlay, FaSearchPlus } from "react-icons/fa"; // Import icons
+import { FaPlay, FaSearchPlus } from "react-icons/fa";
 import "yet-another-react-lightbox/styles.css";
+import { FaTrash } from "react-icons/fa";
 import { useRef } from "react";
 
 const Gallery = () => {
@@ -297,6 +302,16 @@ const Gallery = () => {
     if (Array.isArray(data)) setMedia(data);
     else setMedia([]);
   };
+
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this?"
+    );
+    if (!confirmDelete) return;
+
+    const result = await deleteMedia(id);
+    if (result) getMedia(); // Refresh after deletion
+  };
   const [loading, setLoading] = useState(false); // 👈 loading state
 
   const handleUpload = async () => {
@@ -312,7 +327,6 @@ const Gallery = () => {
 
       getMedia();
       setLoading(false); // 👈 end loading
-
     }
   };
 
@@ -352,12 +366,33 @@ const Gallery = () => {
       <div className="media-grid">
         {Array.isArray(media) && media.length > 0 ? (
           media.map((item, i) => (
-            <div
-              className="media-card"
-              key={item._id}
-              onClick={() => setIndex(i)} // Click to open in lightbox
-            >
-              <div className="image-container">
+            // <div
+            //   className="media-card"
+            //   key={item._id}
+            //   onClick={() => setIndex(i)}
+            // >
+            //   <div className="image-container">
+            //     {item.type.startsWith("video") ? (
+            //       <video muted>
+            //         <source src={item.path} type="video/mp4" />
+            //       </video>
+            //     ) : (
+            //       <img src={item.path} alt={item.filename} />
+            //     )}
+
+            //     {/* Video or Image Hover Icons */}
+            //     <div className="overlay">
+            //       {item.type.startsWith("video") ? (
+            //         <FaPlay className="icon play-icon" />
+            //       ) : (
+            //         <FaSearchPlus className="icon zoom-icon" />
+            //       )}
+            //     </div>
+            //   </div>
+            // </div>
+
+            <div className="media-card" key={item._id}>
+              <div className="image-container" onClick={() => setIndex(i)}>
                 {item.type.startsWith("video") ? (
                   <video muted>
                     <source src={item.path} type="video/mp4" />
@@ -366,7 +401,6 @@ const Gallery = () => {
                   <img src={item.path} alt={item.filename} />
                 )}
 
-                {/* Video or Image Hover Icons */}
                 <div className="overlay">
                   {item.type.startsWith("video") ? (
                     <FaPlay className="icon play-icon" />
@@ -375,6 +409,14 @@ const Gallery = () => {
                   )}
                 </div>
               </div>
+
+              {/* Delete Button */}
+              <button
+                className="delete-btn"
+                onClick={() => handleDelete(item._id)}
+              >
+                <FaTrash />
+              </button>
             </div>
           ))
         ) : (

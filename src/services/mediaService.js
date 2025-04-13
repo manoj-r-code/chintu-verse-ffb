@@ -23,3 +23,14 @@ export const fetchMedia = async () => {
     return [];
   }
 };
+
+export const deleteMedia = async (id) => {
+  try {
+    const res = await axios.delete(`${BASE_URL}/delete/${id}`);
+    return res.data;
+  } catch (err) {
+    console.error("Delete failed:", err);
+    return null;
+  }
+};
+
