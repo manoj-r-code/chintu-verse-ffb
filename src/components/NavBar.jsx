@@ -36,7 +36,7 @@ function NavBar() {
         <span className="brand-name">ChintuVerse</span>
       </div>
       <div className="nav-center">
-        <Link to="/">Home</Link>
+        <Link to="/home">Home</Link>
         <Link to="/gallery">Gallery</Link>
         {/* <Link to="/fav">Favourites</Link> */}
         <Link to="/game">Game</Link>
