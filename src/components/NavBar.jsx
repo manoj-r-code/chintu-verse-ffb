@@ -40,7 +40,7 @@ function NavBar() {
         <Link to="/gallery">Gallery</Link>
         {/* <Link to="/fav">Favourites</Link> */}
         <Link to="/game">Game</Link>
-        <Link to="/chintu">Chintu</Link>
+        {/* <Link to="/chintu">Chintu</Link> */}
       </div>
       <ThemeToggle></ThemeToggle>
     </nav>

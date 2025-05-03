@@ -27,7 +27,7 @@ const ProtectedRoute = ({ children }) => {
     return <div>Loading...</div>;
   }
 
-  return isValid ? children : <Navigate to="/login" replace />;
+  return isValid ? children : <Navigate to="/" replace />;
 };
 
 export default ProtectedRoute;

@@ -42,8 +42,8 @@ function App() {
   // Check if current path is login or register
   const hideNavBar =
     location.pathname === "/" ||
-    location.pathname === "/register" ||
-    location.pathname === "/login";
+    location.pathname === "/register" 
+    // location.pathname === "/login";
 
   return (
     <>
