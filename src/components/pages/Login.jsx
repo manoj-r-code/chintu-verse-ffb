@@ -3,7 +3,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../services/axiosInstance";
 import chintucat from "../../assets/login-logo.jpg";
+import { Link } from "react-router-dom";
 
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,12 +21,17 @@ function Login() {
       localStorage.setItem("token", res.data.token);
       // console.log("Response from login:", res);
       //   alert("Login Successful! 🎉");
+      toast.success("Login Successful!");
+
       const audio = new Audio(catMusicURL);
       audio.play();
-      navigate("/home"); // 👈 After successful login, redirect to Home
+      // navigate("/home"); // 👈 After successful login, redirect to Home
+      setTimeout(() => {
+        navigate("/home");
+      }, 2000);
     } catch (err) {
       console.error(err);
-      alert("Login Failed 😢");
+      toast.error("Login Failed 😢");
     }
   };
   // const handleLogin = async (e) => {
@@ -64,8 +72,23 @@ function Login() {
             />
             <button type="submit">🐱 Login</button>
           </form>
+          <Link to="/register" className="register-link">
+            Sign Up
+          </Link>{" "}
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 }

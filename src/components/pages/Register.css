@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Mandaic&family=Orbitron:wght@400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&display=swap");
-.login-page {
+.register-page {
   background: linear-gradient(to bottom right, #634f5a, #9478c4);
   min-height: 100vh;
   display: flex;
@@ -10,7 +10,7 @@
   padding: 2rem;
 }
 
-.login-container {
+.register-container {
   background-color: #ffffff;
   padding: 2rem;
   border-radius: 2rem;
@@ -45,7 +45,7 @@
   }
 }
 
-.login-form input {
+.register-form input {
   width: 90%;
   padding: 0.75rem;
   margin: 0.5rem 0;
@@ -55,12 +55,12 @@
   transition: border-color 0.3s;
 }
 
-.login-form input:focus {
+.register-form input:focus {
   border-color: #ff8baf;
   outline: none;
 }
 
-.login-form button {
+.register-form button {
   background-color: #ff8baf;
   color: white;
   padding: 0.75rem;
@@ -72,12 +72,12 @@
   transition: background-color 0.3s ease;
 }
 
-.login-form button:hover {
+.register-form button:hover {
   background-color: #e66794;
 }
 
 @media (max-width: 500px) {
-  .login-container {
+  .register-container {
     padding: 1.5rem;
     border-radius: 1rem;
     max-width: 90%;
@@ -91,12 +91,12 @@
     font-size: 1.5rem;
   }
 
-  .login-form input {
+  .register-form input {
     font-size: 0.9rem;
     padding: 0.6rem;
   }
 
-  .login-form button {
+  .register-form button {
     font-size: 1rem;
     padding: 0.6rem;
   }
