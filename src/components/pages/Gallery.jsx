@@ -272,7 +272,7 @@
 
 //implementation of the Gallery component with lightbox and upload functionality
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Gallery.css";
 import {
   uploadMedia,
@@ -285,7 +285,8 @@ import Video from "yet-another-react-lightbox/plugins/video";
 import { FaPlay, FaSearchPlus } from "react-icons/fa";
 import "yet-another-react-lightbox/styles.css";
 import { FaTrash } from "react-icons/fa";
-import { useRef } from "react";
+// import { useRef } from "react";
+import { jwtDecode } from "jwt-decode";
 
 const Gallery = () => {
   const [media, setMedia] = useState([]);
@@ -293,11 +294,31 @@ const Gallery = () => {
   const [index, setIndex] = useState(-1);
   const fileInputRef = useRef(null); // create a ref
   // for lightbox
+  const [isAdmin, setIsAdmin] = useState(false);
 
+  // useEffect(() => {
+  //   getMedia();
+  // }, []);
   useEffect(() => {
+    // 1. Fetch media on load
     getMedia();
+  
+    // 2. Check token and set isAdmin
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        const email = decoded.email;
+        setIsAdmin(email === "admin@gmail.com");
+      } catch (err) {
+        console.error("Invalid token:", err);
+        setIsAdmin(false);
+      }
+    } else {
+      setIsAdmin(false);
+    }
   }, []);
-
+  
   const getMedia = async () => {
     const data = await fetchMedia();
     if (Array.isArray(data)) setMedia(data);
