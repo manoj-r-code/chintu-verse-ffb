@@ -279,7 +279,7 @@ import {
   fetchMedia,
   deleteMedia,
 } from "../../services/mediaService";
-import { isAdmin } from "../../services/axiosInstance";
+// import { isAdmin } from "../../services/axiosInstance";
 import Lightbox from "yet-another-react-lightbox";
 import Video from "yet-another-react-lightbox/plugins/video";
 import { FaPlay, FaSearchPlus } from "react-icons/fa";
