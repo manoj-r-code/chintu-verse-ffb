@@ -279,6 +279,7 @@ import {
   fetchMedia,
   deleteMedia,
 } from "../../services/mediaService";
+import { isAdmin } from "../../services/axiosInstance";
 import Lightbox from "yet-another-react-lightbox";
 import Video from "yet-another-react-lightbox/plugins/video";
 import { FaPlay, FaSearchPlus } from "react-icons/fa";
@@ -351,7 +352,7 @@ const Gallery = () => {
     <div className="gallery-container">
       {/* <h2>ChintuVerse Gallery</h2> */}
 
-      <div className="upload-section">
+      {/* <div className="upload-section">
         <input
           type="file"
           accept="image/*,video/*"
@@ -361,7 +362,26 @@ const Gallery = () => {
         {loading && <p className="uploading-message">Uploading file... 🐾</p>}
 
         <button onClick={handleUpload}>Upload</button>
-      </div>
+      </div> */}
+
+      {isAdmin ? (
+        <div className="upload-section">
+          <input
+            type="file"
+            accept="image/*,video/*"
+            onChange={(e) => setFile(e.target.files[0])}
+            ref={fileInputRef}
+          />
+          {loading && <p className="uploading-message">Uploading file... 🐾</p>}
+          <button onClick={handleUpload} disabled={loading}>
+            {loading ? "Uploading..." : "Upload"}
+          </button>
+        </div>
+      ) : (
+        <div className="upload-section">
+          <p className="uploading-message">Only admin can upload media....🛑</p>
+        </div>
+      )}
 
       <div className="media-grid">
         {Array.isArray(media) && media.length > 0 ? (

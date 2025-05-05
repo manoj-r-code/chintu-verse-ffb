@@ -1,4 +1,5 @@
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 const axiosInstance = axios.create({
   // baseURL: "http://localhost:5000/api/auth", // Adjust your backend URL if different
@@ -22,4 +23,24 @@ axiosInstance.interceptors.request.use(
   }
 );
 
-export default axiosInstance;
+let isAdmin = false;
+let userEmail = null;
+
+const token = localStorage.getItem("token");
+
+if (token) {
+  try {
+    const decoded = jwtDecode (token); // { id, email, iat, exp }
+    // console.log("Decoded token:", decoded);
+
+    userEmail = decoded.email;
+    isAdmin = userEmail === "admin@gmail.com";
+  } catch (err) {
+    console.error("Invalid token:", err);
+  }
+}
+
+// Export instance and admin status
+export { axiosInstance, isAdmin, userEmail };
+
+// export default axiosInstance;
