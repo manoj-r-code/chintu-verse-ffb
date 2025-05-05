@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import axiosInstance from "../services/axiosInstance";
+// import axiosInstance from "../services/axiosInstance";
+import { axiosInstance } from "../services/axiosInstance";
 
 const ProtectedRoute = ({ children }) => {
   const [isValid, setIsValid] = useState(null);

@@ -2,7 +2,7 @@ import "./Register.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import axiosInstance from "../../services/axiosInstance";
+import {axiosInstance} from "../../services/axiosInstance";
 import chintucat from "../../assets/login-logo.jpg";
 import { Link } from "react-router-dom";
 
