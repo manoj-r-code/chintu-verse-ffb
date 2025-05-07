@@ -75,3 +75,46 @@
     margin: 10px 0;
   }
 }
+
+/* .logout-btn {
+  background: linear-gradient(145deg, #232526, #414345); 
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 1rem;
+  border-radius: 30px;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 10px 20px;
+
+  transition: background-color 0.3s, transform 0.3s;
+} */
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* space between icon and text */
+
+  background: linear-gradient(145deg, #232526, #414345);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 10px 20px;
+
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.logout-btn:hover {
+  background: linear-gradient(145deg, #3a3a3a, #5a5a5a);
+  transform: scale(1.05);
+}
+
+.logout {
+  display: flex;
+  justify-content: space-between;
+}
