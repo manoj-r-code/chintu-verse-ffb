@@ -24,6 +24,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "./NavBar.css";
 import ThemeToggle from "./ThemeToggle";
 import { PawPrint } from "lucide-react";
+import React, { useEffect,useState } from "react";
+import { jwtDecode } from "jwt-decode";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -32,6 +34,27 @@ function NavBar() {
     // Optional: Clear any app-level auth state if you're using Context or Redux
     navigate("/"); // Redirect to login
   };
+  const [isAdmin, setIsAdmin] = useState(false);
+
+
+  useEffect(() => {
+    // 1. Fetch media on load
+
+    // 2. Check token and set isAdmin
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        const email = decoded.email;
+        setIsAdmin(email === "admin@gmail.com");
+      } catch (err) {
+        console.error("Invalid token:", err);
+        setIsAdmin(false);
+      }
+    } else {
+      setIsAdmin(false);
+    }
+  }, []);
   return (
     <nav className="navbar">
       <div className="nav-left">
@@ -43,6 +66,13 @@ function NavBar() {
         <Link to="/gallery">Gallery</Link>
         {/* <Link to="/fav">Favourites</Link> */}
         <Link to="/game">Game</Link>
+        {isAdmin ? (
+        <Link to="/admin">Admin</Link>
+      ) : (
+        <div>
+        
+        </div>
+      )}
 
         {/* <Link to="/chintu">Chintu</Link> */}
       </div>
