@@ -34,6 +34,7 @@ import GameBoard from "./components/pages/Game";
 import Gallery from "./components/pages/Gallery";
 import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
+import Admin from "./components/pages/Admin";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
@@ -41,9 +42,8 @@ function App() {
 
   // Check if current path is login or register
   const hideNavBar =
-    location.pathname === "/" ||
-    location.pathname === "/register" 
-    // location.pathname === "/login";
+    location.pathname === "/" || location.pathname === "/register";
+  // location.pathname === "/login";
 
   return (
     <>
@@ -76,6 +76,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <GameBoard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <Admin />
               </ProtectedRoute>
             }
           />
